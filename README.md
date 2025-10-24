@@ -1,94 +1,157 @@
-# 10x Astro Starter
+## SquashLeague
 
-A modern, opinionated starter template for building fast, accessible, and AI-friendly web applications.
+![Node](https://img.shields.io/badge/node-22.14.0-339933?logo=node.js&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-5-FF5D01?logo=astro&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=0b1)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38B2AC?logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/license-TBD-lightgrey)
 
-## Tech Stack
+### Project description
 
-- [Astro](https://astro.build/) v5.5.5 - Modern web framework for building fast, content-focused websites
-- [React](https://react.dev/) v19.0.0 - UI library for building interactive components
-- [TypeScript](https://www.typescriptlang.org/) v5 - Type-safe JavaScript
-- [Tailwind CSS](https://tailwindcss.com/) v4.0.17 - Utility-first CSS framework
+SquashLeague is a Progressive Web App (PWA) that digitizes and streamlines how match results are recorded in an amateur squash league. Players can submit and edit match scores online, while admins manage seasons, rounds, groups, and scoring in a single place. The app is designed to be fast (Astro + React), mobile‑first, and available offline for key flows.
 
-## Prerequisites
+Key highlights:
 
-- Node.js v22.14.0 (as specified in `.nvmrc`)
-- npm (comes with Node.js)
+- Player login and result submission with per‑set scores and validation (5 sets, to 11, win by 2)
+- Instant table recalculation and points allocation per match outcome (including walkovers)
+- Admin panel for seasons, rounds, groups, players, manual WO, audit trail, and re‑calculation
+- Notifications via email, web push, and SMS with rate limiting
+- Offline support for “My matches” and the result form with conflict handling
 
-## Getting Started
+---
 
-1. Clone the repository:
+### Table of contents
+
+- [Project description](#project-description)
+- [Tech stack](#tech-stack)
+- [Getting started locally](#getting-started-locally)
+- [Available scripts](#available-scripts)
+- [Project scope](#project-scope)
+- [Project status](#project-status)
+- [License](#license)
+
+---
+
+### Tech stack
+
+- Astro 5 (primary web framework)
+- React 19 for interactive components
+- TypeScript 5 for static typing
+- Tailwind CSS 4 for styling
+- shadcn/ui for accessible React UI components
+- Supabase (PostgreSQL, Auth) as the backend platform
+- GitHub Actions for CI/CD (planned)
+- DigitalOcean for hosting via Docker image (planned)
+- OpenRouter.ai for flexible AI model access (planned optional)
+
+See also: `.ai/tech-stack.md` and `.ai/prd.md` for context.
+
+---
+
+### Getting started locally
+
+Prerequisites:
+
+- Node.js 22.14.0 (see `.nvmrc`)
+- npm (comes with Node)
+
+Clone and run:
 
 ```bash
-git clone https://github.com/przeprogramowani/10x-astro-starter.git
-cd 10x-astro-starter
-```
+git clone <this-repo-url>
+cd squash-league
 
-2. Install dependencies:
+# Use the right Node version
+nvm use 22.14.0  # or install Node 22.14.0 via your preferred method
 
-```bash
+# Install dependencies
 npm install
-```
 
-3. Run the development server:
-
-```bash
+# Start dev server
 npm run dev
 ```
 
-4. Build for production:
+Build and preview production build:
 
 ```bash
 npm run build
+npm run preview
 ```
 
-## Available Scripts
+Code quality:
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint issues
+```bash
+# Lint (ESLint)
+npm run lint
 
-## Project Structure
+# Lint and fix
+npm run lint:fix
 
-```md
-.
-├── src/
-│   ├── layouts/    # Astro layouts
-│   ├── pages/      # Astro pages
-│   │   └── api/    # API endpoints
-│   ├── components/ # UI components (Astro & React)
-│   └── assets/     # Static assets
-├── public/         # Public assets
+# Format (Prettier)
+npm run format
 ```
 
-## AI Development Support
+Environment variables:
 
-This project is configured with AI development tools to enhance the development experience, providing guidelines for:
+- None are required for the current starter to run locally.
+- Supabase integration will require typical variables (e.g., `SUPABASE_URL`, `SUPABASE_ANON_KEY`). These will be documented alongside the integration.
 
-- Project structure
-- Coding practices
-- Frontend development
-- Styling with Tailwind
-- Accessibility best practices
-- Astro and React guidelines
+---
 
-### Cursor IDE
+### Available scripts
 
-The project includes AI rules in `.cursor/rules/` directory that help Cursor IDE understand the project structure and provide better code suggestions.
+- `npm run dev`: Start the Astro dev server
+- `npm run build`: Build the production site
+- `npm run preview`: Preview the production build locally
+- `npm run astro`: Run Astro CLI directly
+- `npm run lint`: Run ESLint across the project
+- `npm run lint:fix`: Run ESLint with automatic fixes
+- `npm run format`: Format files using Prettier (with `prettier-plugin-astro`)
 
-### GitHub Copilot
+---
 
-AI instructions for GitHub Copilot are available in `.github/copilot-instructions.md`
+### Project scope
 
-### Windsurf
+In scope for MVP:
 
-The `.windsurfrules` file contains AI configuration for Windsurf.
+- User registration and login by invitation (Supabase Auth)
+- Seasons, rounds, and groups management
+- Automatic round‑robin pairing within groups
+- Result submission and editing (time‑boxed)
+- Automatic scoring and table updates
+- Notifications (email/SMS/web push)
+- Offline PWA support (key views and forms)
+- Admin dashboard and audit trail
 
-## Contributing
+Out of scope for MVP:
 
-Please follow the AI guidelines and coding practices defined in the AI configuration files when contributing to this project.
+- Automatic promotions/relegations between rounds
+- External calendar or payment integrations
+- Comments or social features
+- Public (non‑authenticated) standings view
+- CSV export
+- Court booking integrations
 
-## License
+For detailed functional requirements and user stories, see `.ai/prd.md`.
 
-MIT
+---
+
+### Project status
+
+- Status: MVP scaffold in progress (Astro + React + TS + Tailwind baseline in place)
+- CI/CD: Planned with GitHub Actions
+- Hosting: Planned on DigitalOcean via Docker image
+- PWA: Offline support planned per PRD
+- Admin dashboard: Planned per PRD
+
+Useful docs:
+
+- Product Requirements: `.ai/prd.md`
+- Tech stack overview: `.ai/tech-stack.md`
+
+---
+
+### License
+
+TBD. No license has been specified yet. Until a license is added, all rights are reserved. If you plan to open‑source, consider adding a license (see `https://choosealicense.com`).
